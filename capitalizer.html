@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Tzaru | CAPITALIZER</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+	<!-- INLINE STYLES
+	================================================ -->
+	<style>
+		body {
+			margin: 0;
+			background: #FAFAFA;
+			padding: 0;
+			font: 16px 'Roboto', sans-serif;
+			-webkit-font-smoothing: antialiased;
+			text-rendering: optimizelegibility;
+			color: #212121;
+		}
+
+		h4 {
+			font-weight: 300;
+			font-size: 24px;
+		}
+
+		textarea {
+			padding: 1em;
+			border-radius: 4px;
+			border: none;
+			outline: none;
+			transition: all .2s ease-in-out;
+			margin-bottom: 1.4em;
+			width: 100%;
+		}
+
+		textarea:hover, 
+		textarea:focus {
+			background: #e2e1e0;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		#capitalize {
+			background: #00b7d5;
+			position: relative;
+			border-bottom-left-radius: 4px;
+			border-bottom-right-radius: 4px;
+			color: white;
+			padding: 2em 1em;
+			max-width: 600px;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+			min-height: 200px;
+			margin: 0 auto 1.4em;
+			box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		}
+
+		.capitalize-body {
+			display: flex;
+			flex-flow: row wrap;
+			height: 100%;
+			align-self: center;
+			justify-content: space-around;
+			width: 100%;
+		}
+
+		#copyright {
+			text-align: center;
+			font-size: 11px;
+		}
+
+		.btn {
+			padding: .4em 1em;
+			outline: none;
+			user-select: none;
+			border: none;
+			border-radius: 4px;
+			text-transform: uppercase;
+			font-weight: bold;
+			transition: all .2s ease-in-out;
+			cursor: pointer;
+			box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		}
+
+		.btn:hover {
+			box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+		}
+
+		.btn-primary {
+			background: #F50057;
+			color: white;
+		}
+
+		.btn-primary:hover {
+			background: #FF4081;
+		}
+
+		.btn-reset, #btn-copy {
+			background: white;
+		}
+
+		.btn-reset {
+			background: transparent;
+			box-shadow: none;
+			position: absolute;
+			top: 12px;
+			right: 12px;
+			color: white;
+			padding: 0;
+		}
+
+		.btn-reset:hover {
+			box-shadow: none;
+			transform: scale(1.2)
+		}
+
+		.brand {
+			position: absolute;
+			top: 12px;
+			left: 12px;
+			text-transform: uppercase;
+			font-weight: bold;
+			color: #FAFAFA;
+		}
+
+		.brand i {
+			padding-right: 4px;
+		}
+
+	</style><!-- styles -->
+</head>
+<body>
+	
+	<!-- CAPITALIZE CONTAINER
+	================================================ -->
+	<div id="capitalize">
+		<div class="capitalize-body">
+			<a href="#" class="brand"><i class="material-icons">call_merge</i>Capitalizer</a>
+			<textarea placeholder="Enter your text here..." id="sentence"></textarea>
+			<button class="btn btn-primary" type="button">Capitalize</button>
+			<button id="btn-copy" class="btn" type="button">Copy</button>
+			<button title="Refresh" class="btn btn-reset"><i class="material-icons">refresh</i></button>	
+		</div><!-- .capitalize-body -->
+	</div><!-- #capitalize -->
+
+
+	<!-- COPYRIGHT
+	================================================ -->
+	<p id="copyright">CAPITALIZER &copy; <span id="year"></span> Tzaru</p>
+
+	
+	<!-- JS -->
+	<script>
+		document.onreadystatechange = function() {
+		    if (document.readyState === "interactive") {
+
+		        (function() {
+		            "use strict";
+
+		            // DOM pointers
+		            const btnPrimary = document.querySelector(".btn-primary");
+		            const btnReset = document.querySelector(".btn-reset");
+		            const btnCopy = document.getElementById("btn-copy");
+
+		            // Dynamic date
+		            function showCurrentYear() {
+		                const elem = document.getElementById("year");
+		                const currentDate = new Date();
+		                const year = currentDate.getFullYear();
+		                elem.innerHTML = year;
+		            }
+
+		            // Reset all
+		            function resetAll() {
+		                document.getElementById("sentence").value = null;
+		                document.getElementById("result-text").innerHTML = null;
+		            }
+
+		            // Capitalize
+		            const strToUpperCase = str => {
+		                const upperCaseStr = Array.from(str).map(x => x.toUpperCase());
+		                let resultText = document.getElementById("sentence");
+		                resultText.value = upperCaseStr.join("");
+		            };
+
+		            // Event listeners
+		            btnPrimary.addEventListener("click", function() {
+		                const textareaVal = document.getElementById("sentence").value;
+		                strToUpperCase(textareaVal);
+		            });
+
+		            btnReset.addEventListener("click", resetAll);
+
+		            // Copy textarea
+		            btnCopy.addEventListener("click", function(event) {
+
+		                const copyTextarea = document.getElementById("sentence");
+		                copyTextarea.select();
+
+		                try {
+		                    const successful = document.execCommand('copy');
+		                    const msg = successful ? 'successful' : 'unsuccessful';
+		                    console.log(`Copying text command was ${msg}`);
+		                } catch (err) {
+		                    console.log("Unable to copy");
+		                }
+		            });
+
+		            // Invoke methods
+		            showCurrentYear();
+
+		        })(); // closure ends 
+		    }
+		};
+	</script>
+	
+</body>
+</html>
