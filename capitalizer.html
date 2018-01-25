@@ -31,8 +31,8 @@
 			border: none;
 			outline: none;
 			transition: all .2s ease-in-out;
-			margin-bottom: 1.4em;
 			width: 100%;
+			margin-bottom: 2em;
 		}
 
 		textarea:hover, 
@@ -131,6 +131,14 @@
 		.brand i {
 			padding-right: 4px;
 		}
+
+		#statusReport {
+			width: 100%;
+			text-align: center;
+			position: absolute;
+			bottom: 12px;
+			font-size: 12px;
+		}
 	</style><!-- styles -->
 
 	<!-- Google fonts and icons -->
@@ -145,6 +153,7 @@
 		<div class="capitalize-body">
 			<a href="#" class="brand"><i class="material-icons">call_merge</i>Capitalizer</a>
 			<textarea placeholder="Enter your text here..." id="sentence"></textarea>
+			<p id="statusReport"></p>
 			<button class="btn btn-primary" type="button">Capitalize</button>
 			<button id="btn-copy" class="btn" type="button">Copy</button>
 			<button title="Refresh" class="btn btn-reset"><i class="material-icons">refresh</i></button>	
@@ -166,9 +175,10 @@
 		            "use strict";
 
 		            // DOM pointers
-		            const btnPrimary = document.querySelector(".btn-primary");
-		            const btnReset = document.querySelector(".btn-reset");
-		            const btnCopy = document.getElementById("btn-copy");
+		            const btnPrimary   = document.querySelector(".btn-primary");
+		            const btnReset 	   = document.querySelector(".btn-reset");
+		            const btnCopy 	   = document.getElementById("btn-copy");
+		            const statusReport = document.getElementById("statusReport");
 
 		            // Dynamic date
 		            function showCurrentYear() {
@@ -181,7 +191,7 @@
 		            // Reset all
 		            function resetAll() {
 		                document.getElementById("sentence").value = null;
-		                document.getElementById("result-text").innerHTML = null;
+		                statusReport.innerHTML = null;
 		            }
 
 		            // Capitalize
@@ -203,15 +213,21 @@
 		            btnCopy.addEventListener("click", function(event) {
 
 		                const copyTextarea = document.getElementById("sentence");
-		                copyTextarea.select();
+		            	
+		            	if (copyTextarea.value === "") {
+		            		statusReport.innerHTML = "No text to copy.";
+		            		return;
+		            	} else {
 
-		                try {
-		                    const successful = document.execCommand('copy');
-		                    const msg = successful ? 'successful' : 'unsuccessful';
-		                    console.log(`Copying text command was ${msg}`);
-		                } catch (err) {
-		                    console.log("Unable to copy");
-		                }
+			                copyTextarea.select();
+
+			                try {
+			                    const successful = document.execCommand('copy');
+			                    statusReport.innerHTML = "Text copied.";
+			                } catch (err) {
+			                    statusReport.innerHTML = "Unable to copy."
+			                }
+		            	}
 		            });
 
 		            // Invoke methods
