@@ -44,11 +44,12 @@
 		}
 		 #capitalize {
 		     background: #00b7d5;
+		     background-image: linear-gradient(to bottom right,#00b7d5, #ff70a3);
 		     position: relative;
 		     border-bottom-left-radius: 4px;
 		     border-bottom-right-radius: 4px;
 		     color: white;
-		     padding: 2em 1em;
+		     padding: 4em;
 		     max-width: 600px;
 		     display: -webkit-box;
 		     display: -ms-flexbox;
@@ -60,7 +61,6 @@
 		     -webkit-box-pack: center;
 		     -ms-flex-pack: center;
 		     justify-content: center;
-		     min-height: 200px;
 		     margin: 0 auto 1.4em;
 		     -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 		     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -164,7 +164,7 @@
 	<div id="capitalize">
 		<div class="capitalize-body">
 			<a href="#" class="brand"><i class="material-icons">call_merge</i>Capitalizer</a>
-			<textarea placeholder="Enter your text here..." id="sentence"></textarea>
+			<textarea rows="6" cols="50" placeholder="Enter your text here..." id="sentence"></textarea>
 			<p id="statusReport"></p>
 			<button class="btn btn-primary" type="button">Capitalize</button>
 			<button id="btn-copy" class="btn" type="button">Copy</button>
