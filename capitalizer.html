@@ -191,13 +191,14 @@
 		            const btnReset 	   = document.querySelector(".btn-reset");
 		            const btnCopy 	   = document.getElementById("btn-copy");
 		            const statusReport = document.getElementById("statusReport");
+		            const copyYear     = document.getElementById("year");
+
 
 		            // Dynamic date
 		            function showCurrentYear() {
-		                const elem = document.getElementById("year");
 		                const currentDate = new Date();
 		                const year = currentDate.getFullYear();
-		                elem.innerHTML = year;
+		                copyYear.innerHTML = year;
 		            }
 
 		            // Reset all
@@ -209,8 +210,7 @@
 		            // Capitalize
 		            const strToUpperCase = str => {
 		                const upperCaseStr = Array.from(str).map(x => x.toUpperCase());
-		                let resultText = document.getElementById("sentence");
-		                resultText.value = upperCaseStr.join("");
+		                document.getElementById("sentence").value = upperCaseStr.join("");
 		            };
 
 		            // Event listeners
