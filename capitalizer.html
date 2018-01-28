@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-	<title>Tzaru | CAPITALIZER</title>
+	<title>Tzaru | CASER</title>
 	
 	<!-- INLINE STYLES
 	================================================ -->
@@ -163,8 +163,8 @@
 	================================================ -->
 	<div id="capitalize">
 		<div class="capitalize-body">
-			<a href="#" class="brand"><i class="material-icons">call_merge</i>Capitalizer</a>
-			<textarea rows="6" cols="50" placeholder="Enter your text here..." id="sentence"></textarea>
+			<a href="#" class="brand"><i class="material-icons">call_merge</i>Caser</a>
+			<textarea rows="6" cols="50" placeholder="Enter the text here..." id="sentence"></textarea>
 			<p id="statusReport"></p>
 			<button class="btn btn-primary" type="button">Uppercase</button>
 			<button id="btn-lowercase" class="btn btn-primary" type="button">Lowercase</button>	
@@ -188,13 +188,13 @@
 		            "use strict";
 
 		            // DOM pointers
-		            const btnPrimary   = document.getElementsByClassName("btn-primary")[0];
-		            const btnReset 	   = document.getElementsByClassName("btn-reset")[0];
-		            const btnCopy 	   = document.getElementById("btn-copy");
-		            const btnLowercase = document.getElementById("btn-lowercase");
-		            const statusReport = document.getElementById("statusReport");
-		            const copyYear     = document.getElementById("year");
-		            let textarea       = document.getElementById("sentence");
+		            const btnPrimary 	= document.getElementsByClassName("btn-primary")[0];
+		            const btnReset 		= document.getElementsByClassName("btn-reset")[0];
+		            const btnCopy 		= document.getElementById("btn-copy");
+		            const btnLowercase  = document.getElementById("btn-lowercase");
+		            const statusReport  = document.getElementById("statusReport");
+		            const copyYear 		= document.getElementById("year");
+		            let textarea 		= document.getElementById("sentence");
 
 
 		            // Dynamic date
@@ -209,48 +209,49 @@
 		                statusReport.innerHTML = null;
 		            }
 
-		            // Change to Upper
-		            const strToUpperCase = str => {
-		                const upperCaseStr = Array.from(str).map(x => x.toUpperCase());
-		                textarea.value = upperCaseStr.join("");
-		            };
-
-		            // Change to lower
-		            const strToLowerCase = str => {
-		            	const lowerCaseStr = Array.from(str).map(x => x.toLowerCase());
-		            	textarea.value = lowerCaseStr.join("");
-		            };
+		            function alterCase(alterCaseFunc, str) {
+		                alterCaseFunc(str);
+		            }
 
 		            // Event listeners
-		            btnPrimary.addEventListener("click", function() {
-		                strToUpperCase(textarea.value);
+		            btnPrimary.addEventListener("click", _ => {
+		                alterCase((str) => {
+		                    const upperCaseStr = Array.from(str).map(x => x.toUpperCase());
+		                    textarea.value = upperCaseStr.join("");
+		                    textarea.value === "" ? statusReport.innerHTML = "Enter some text and try again." : statusReport.innerHTML = `Text is <em>uppercase.</em>`;
+		                }, textarea.value);
 		            });
 
-		            btnLowercase.addEventListener("click", function() {
-		            	strToLowerCase(textarea.value);
+		            btnLowercase.addEventListener("click", _ => {
+
+		                alterCase((str) => {
+		                    const lowerCaseStr = Array.from(str).map(x => x.toLowerCase());
+		                    textarea.value = lowerCaseStr.join("");
+		                    textarea.value === "" ? statusReport.innerHTML = "Enter some text and try again." : statusReport.innerHTML = `Text is <em>lowercase.</em>`;
+		                }, textarea.value);
 		            });
 
 		            btnReset.addEventListener("click", resetAll);
 
 		            // Copy textarea
-		            btnCopy.addEventListener("click", function(event) {
-	            	
-		            	if (textarea.value === "") {
-		            		
-		            		statusReport.innerHTML = "No text to copy.";
-		            		return;
-		            		
-		            	} else {
+		            btnCopy.addEventListener("click", event => {
 
-			                textarea.select();
+		                if (textarea.value === "") {
 
-			                try {
-			                    const successful = document.execCommand('copy');
-			                    statusReport.innerHTML = "Text copied.";
-			                } catch (err) {
-			                    statusReport.innerHTML = "Unable to copy."
-			                }
-		            	}
+		                    statusReport.innerHTML = "No text to copy.";
+		                    return;
+
+		                } else {
+
+		                    textarea.select();
+
+		                    try {
+		                        const successful = document.execCommand('copy');
+		                        statusReport.innerHTML = `Text <em>copied.</em>`;
+		                    } catch (err) {
+		                        statusReport.innerHTML = "Unable to copy.";
+		                    }
+		                }
 		            });
 
 		            // Invoke functions and methods
