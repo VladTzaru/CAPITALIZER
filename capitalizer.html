@@ -247,7 +247,7 @@
 		                    textarea.select();
 
 		                    try {
-		                        const successful = document.execCommand('copy');
+		                        document.execCommand('copy');
 		                        statusReport.innerHTML = `Text <em>copied.</em>`;
 		                    } catch (err) {
 		                        statusReport.innerHTML = "Unable to copy.";
