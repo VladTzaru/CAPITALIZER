@@ -42,29 +42,6 @@
 		 a {
 		     text-decoration: none;
 		}
-		 #capitalize {
-		     background: #00b7d5;
-		     background-image: linear-gradient(to bottom right,#00b7d5, #ff70a3);
-		     position: relative;
-		     border-bottom-left-radius: 4px;
-		     border-bottom-right-radius: 4px;
-		     color: white;
-		     padding: 4em;
-		     max-width: 600px;
-		     display: -webkit-box;
-		     display: -ms-flexbox;
-		     display: flex;
-		     -webkit-box-orient: horizontal;
-		     -webkit-box-direction: normal;
-		     -ms-flex-flow: row wrap;
-		     flex-flow: row wrap;
-		     -webkit-box-pack: center;
-		     -ms-flex-pack: center;
-		     justify-content: center;
-		     margin: 0 auto 1.4em;
-		     -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-		     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-		}
 		 .capitalize-body {
 		     display: -webkit-box;
 		     display: -ms-flexbox;
@@ -79,10 +56,6 @@
 		     -ms-flex-pack: distribute;
 		     justify-content: space-around;
 		     width: 100%;
-		}
-		 #copyright {
-		     text-align: center;
-		     font-size: 11px;
 		}
 		 .btn {
 		     padding: .7em 1em;
@@ -152,6 +125,33 @@
 		     bottom: 12px;
 		     font-size: 12px;
 		}
+		#copyright {
+		     text-align: center;
+		     font-size: 11px;
+		}
+	    #capitalize {
+		     background: #00b7d5;
+		     background-image: linear-gradient(to bottom right,#00b7d5, #ff70a3);
+		     position: relative;
+		     border-bottom-left-radius: 4px;
+		     border-bottom-right-radius: 4px;
+		     color: white;
+		     padding: 4em;
+		     max-width: 600px;
+		     display: -webkit-box;
+		     display: -ms-flexbox;
+		     display: flex;
+		     -webkit-box-orient: horizontal;
+		     -webkit-box-direction: normal;
+		     -ms-flex-flow: row wrap;
+		     flex-flow: row wrap;
+		     -webkit-box-pack: center;
+		     -ms-flex-pack: center;
+		     justify-content: center;
+		     margin: 0 auto 1.4em;
+		     -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		}
 	</style><!-- styles -->
 
 	<!-- Google fonts and icons -->
@@ -164,7 +164,7 @@
 	================================================ -->
 	<div id="capitalize">
 		<div class="capitalize-body">
-			<a href="#" class="brand"><i class="material-icons">call_merge</i>Caser</a>
+			<a href="#" class="brand"><i class="material-icons">swap_vert</i>Caser</a>
 			<textarea rows="6" cols="50" placeholder="Enter the text here..." id="sentence"></textarea>
 			<p id="statusReport"></p>
 			<button class="btn btn-primary" type="button">Uppercase</button>
