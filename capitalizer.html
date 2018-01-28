@@ -187,53 +187,50 @@
 		            "use strict";
 
 		            // DOM pointers
-		            const btnPrimary   = document.querySelector(".btn-primary");
-		            const btnReset 	   = document.querySelector(".btn-reset");
+		            const btnPrimary   = document.getElementsByClassName("btn-primary")[0];
+		            const btnReset 	   = document.getElementsByClassName("btn-reset")[0];
 		            const btnCopy 	   = document.getElementById("btn-copy");
 		            const statusReport = document.getElementById("statusReport");
 		            const copyYear     = document.getElementById("year");
+		            let textarea       = document.getElementById("sentence");
 
 
 		            // Dynamic date
 		            function showCurrentYear() {
 		                const currentDate = new Date();
-		                const year = currentDate.getFullYear();
-		                copyYear.innerHTML = year;
+		                copyYear.innerHTML = currentDate.getFullYear();
 		            }
 
 		            // Reset all
 		            function resetAll() {
-		                document.getElementById("sentence").value = null;
+		                textarea.value = null;
 		                statusReport.innerHTML = null;
 		            }
 
 		            // Capitalize
 		            const strToUpperCase = str => {
 		                const upperCaseStr = Array.from(str).map(x => x.toUpperCase());
-		                document.getElementById("sentence").value = upperCaseStr.join("");
+		                textarea.value = upperCaseStr.join("");
 		            };
 
 		            // Event listeners
 		            btnPrimary.addEventListener("click", function() {
-		                const textareaVal = document.getElementById("sentence").value;
-		                strToUpperCase(textareaVal);
+		                strToUpperCase(textarea.value);
 		            });
 
 		            btnReset.addEventListener("click", resetAll);
 
 		            // Copy textarea
 		            btnCopy.addEventListener("click", function(event) {
-
-		                const copyTextarea = document.getElementById("sentence");
-		            	
-		            	if (copyTextarea.value === "") {
+	            	
+		            	if (textarea.value === "") {
 		            		
 		            		statusReport.innerHTML = "No text to copy.";
 		            		return;
 		            		
 		            	} else {
 
-			                copyTextarea.select();
+			                textarea.select();
 
 			                try {
 			                    const successful = document.execCommand('copy');
