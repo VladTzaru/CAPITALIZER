@@ -166,9 +166,10 @@
 			<a href="#" class="brand"><i class="material-icons">call_merge</i>Capitalizer</a>
 			<textarea rows="6" cols="50" placeholder="Enter your text here..." id="sentence"></textarea>
 			<p id="statusReport"></p>
-			<button class="btn btn-primary" type="button">Capitalize</button>
+			<button class="btn btn-primary" type="button">Uppercase</button>
+			<button id="btn-lowercase" class="btn btn-primary" type="button">Lowercase</button>	
 			<button id="btn-copy" class="btn" type="button">Copy</button>
-			<button title="Refresh" class="btn btn-reset"><i class="material-icons">refresh</i></button>	
+			<button title="Refresh" class="btn btn-reset"><i class="material-icons">refresh</i></button>
 		</div><!-- .capitalize-body -->
 	</div><!-- #capitalize -->
 
@@ -190,6 +191,7 @@
 		            const btnPrimary   = document.getElementsByClassName("btn-primary")[0];
 		            const btnReset 	   = document.getElementsByClassName("btn-reset")[0];
 		            const btnCopy 	   = document.getElementById("btn-copy");
+		            const btnLowercase = document.getElementById("btn-lowercase");
 		            const statusReport = document.getElementById("statusReport");
 		            const copyYear     = document.getElementById("year");
 		            let textarea       = document.getElementById("sentence");
@@ -207,15 +209,25 @@
 		                statusReport.innerHTML = null;
 		            }
 
-		            // Capitalize
+		            // Change to Upper
 		            const strToUpperCase = str => {
 		                const upperCaseStr = Array.from(str).map(x => x.toUpperCase());
 		                textarea.value = upperCaseStr.join("");
 		            };
 
+		            // Change to lower
+		            const strToLowerCase = str => {
+		            	const lowerCaseStr = Array.from(str).map(x => x.toLowerCase());
+		            	textarea.value = lowerCaseStr.join("");
+		            };
+
 		            // Event listeners
 		            btnPrimary.addEventListener("click", function() {
 		                strToUpperCase(textarea.value);
+		            });
+
+		            btnLowercase.addEventListener("click", function() {
+		            	strToLowerCase(textarea.value);
 		            });
 
 		            btnReset.addEventListener("click", resetAll);
