@@ -3,6 +3,9 @@
 <head lang="en">
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicon -->
+	<link rel="icon" href="img/favicon.png">
 	
 	<title>Tzaru | CASER</title>
 	
@@ -135,16 +138,22 @@
 		     -ms-transform: scale(1.2);
 		     transform: scale(1.2) 
 		}
+		 .brand:hover {
+		 	 transform: scale(1.2);
+		 }
 		 .brand {
+		     transition: all .2s ease-in-out;
 		     position: absolute;
 		     top: 12px;
-		     left: 12px;
+		     left: 14px;
 		     text-transform: uppercase;
 		     font-weight: bold;
 		     color: #FAFAFA;
 		}
-		 .brand i {
-		     padding-right: 4px;
+		 .brand img {
+		 	 width: 24px;
+		     padding-right: 6px;
+		     transition: all .2s ease-in-out;
 		}
 		 #statusReport {
 		     width: 100%;
@@ -157,7 +166,6 @@
 
 	<!-- Google fonts and icons -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	
@@ -165,14 +173,14 @@
 	================================================ -->
 	<div id="capitalize">
 		<div class="capitalize-body">
-			<a href="#" class="brand"><i class="material-icons">call_merge</i>Caser</a>
+			<a href="#" class="brand"><img src="img/logo_white.svg" alt="Logo">Caser</a>
 			<textarea rows="6" cols="50" placeholder="Enter the text here..." id="sentence"></textarea>
 			<p id="statusReport"></p>
 			<button class="btn btn-primary" type="button">Uppercase</button>
 			<button id="btn-lowercase" class="btn btn-primary" type="button">Lowercase</button>	
 			<button id="btn-capitalize" class="btn btn-primary">Capitalize</button>
 			<button id="btn-copy" class="btn" type="button">Copy</button>
-			<button title="Refresh" class="btn btn-reset"><i class="material-icons">refresh</i></button>
+			<button title="Refresh" class="btn btn-reset"><img src="img/ic_refresh_white_24px.svg" alt="Refresh icon"></button>
 		</div><!-- .capitalize-body -->
 	</div><!-- #capitalize -->
 
