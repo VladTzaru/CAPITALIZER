@@ -91,6 +91,7 @@
 		     -moz-user-select: none;
 		     -ms-user-select: none;
 		     user-select: none;
+		     margin-bottom: 1em;
 		     border: none;
 		     border-radius: 4px;
 		     text-transform: uppercase;
@@ -169,6 +170,7 @@
 			<p id="statusReport"></p>
 			<button class="btn btn-primary" type="button">Uppercase</button>
 			<button id="btn-lowercase" class="btn btn-primary" type="button">Lowercase</button>	
+			<button id="btn-capitalize" class="btn btn-primary">Capitalize</button>
 			<button id="btn-copy" class="btn" type="button">Copy</button>
 			<button title="Refresh" class="btn btn-reset"><i class="material-icons">refresh</i></button>
 		</div><!-- .capitalize-body -->
@@ -189,13 +191,14 @@
 		            "use strict";
 
 		            // DOM pointers
-		            const btnPrimary 	= document.getElementsByClassName("btn-primary")[0];
-		            const btnReset 		= document.getElementsByClassName("btn-reset")[0];
-		            const btnCopy 		= document.getElementById("btn-copy");
-		            const btnLowercase  = document.getElementById("btn-lowercase");
-		            const statusReport  = document.getElementById("statusReport");
-		            const copyYear 		= document.getElementById("year");
-		            let textarea 		= document.getElementById("sentence");
+		            const btnPrimary = document.getElementsByClassName("btn-primary")[0];
+		            const btnReset = document.getElementsByClassName("btn-reset")[0];
+		            const btnCopy = document.getElementById("btn-copy");
+		            const btnLowercase = document.getElementById("btn-lowercase");
+		            const btnCapitalize = document.getElementById("btn-capitalize");
+		            const statusReport = document.getElementById("statusReport");
+		            const copyYear = document.getElementById("year");
+		            let textarea = document.getElementById("sentence");
 
 
 		            // Dynamic date
@@ -214,6 +217,13 @@
 		                alterCaseFunc(str);
 		            }
 
+		            // https://stackoverflow.com/questions/196972/convert-string-to-title-case-with-javascript/196991#196991
+		            function capitalize(str) {
+		                return str.replace(/\w\S*/g, function(txt) {
+		                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		                });
+		            }
+
 		            // Event listeners
 		            btnPrimary.addEventListener("click", _ => {
 		                alterCase((str) => {
@@ -230,6 +240,11 @@
 		                    textarea.value = lowerCaseStr.join("");
 		                    textarea.value === "" ? statusReport.innerHTML = "Enter some text and try again." : statusReport.innerHTML = `Text is <em>lowercase.</em>`;
 		                }, textarea.value);
+		            });
+
+		            btnCapitalize.addEventListener("click", _ => {
+		                textarea.value = capitalize(textarea.value);
+		                textarea.value === "" ? statusReport.innerHTML = "Enter some text and try again." : statusReport.innerHTML = `Text is <em>capitalized.</em>`;
 		            });
 
 		            btnReset.addEventListener("click", resetAll);
