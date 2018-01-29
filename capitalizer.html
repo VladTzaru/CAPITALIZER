@@ -91,6 +91,7 @@
 		     -moz-user-select: none;
 		     -ms-user-select: none;
 		     user-select: none;
+		     margin-bottom: 1em;
 		     border: none;
 		     border-radius: 4px;
 		     text-transform: uppercase;
@@ -189,14 +190,14 @@
 		            "use strict";
 
 		            // DOM pointers
-		            const btnPrimary 	= document.getElementsByClassName("btn-primary")[0];
-		            const btnReset 		= document.getElementsByClassName("btn-reset")[0];
-		            const btnCopy 		= document.getElementById("btn-copy");
-		            const btnLowercase  = document.getElementById("btn-lowercase");
+		            const btnPrimary = document.getElementsByClassName("btn-primary")[0];
+		            const btnReset = document.getElementsByClassName("btn-reset")[0];
+		            const btnCopy = document.getElementById("btn-copy");
+		            const btnLowercase = document.getElementById("btn-lowercase");
 		            const btnCapitalize = document.getElementById("btn-capitalize");
-		            const statusReport  = document.getElementById("statusReport");
-		            const copyYear 		= document.getElementById("year");
-		            let textarea 		= document.getElementById("sentence");
+		            const statusReport = document.getElementById("statusReport");
+		            const copyYear = document.getElementById("year");
+		            let textarea = document.getElementById("sentence");
 
 
 		            // Dynamic date
@@ -217,9 +218,9 @@
 
 		            // https://stackoverflow.com/questions/196972/convert-string-to-title-case-with-javascript/196991#196991
 		            function capitalize(str) {
-		            	return str.replace(/\w\S*/g, function(txt) {
-		            		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-		            	});
+		                return str.replace(/\w\S*/g, function(txt) {
+		                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		                });
 		            }
 
 		            // Event listeners
@@ -241,8 +242,8 @@
 		            });
 
 		            btnCapitalize.addEventListener("click", _ => {
-		            	textarea.value = capitalize(textarea.value);
-		            	textarea.value === "" ? statusReport.innerHTML = "Enter some text and try again." : statusReport.innerHTML = `Text is <em>capitalized.</em>`;
+		                textarea.value = capitalize(textarea.value);
+		                textarea.value === "" ? statusReport.innerHTML = "Enter some text and try again." : statusReport.innerHTML = `Text is <em>capitalized.</em>`;
 		            });
 
 		            btnReset.addEventListener("click", resetAll);
